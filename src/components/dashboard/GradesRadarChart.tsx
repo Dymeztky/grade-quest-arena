@@ -1,24 +1,9 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from "recharts";
-
-const subjectData = [
-  { subject: "MTK", value: 85, fullMark: 100 },
-  { subject: "FIS", value: 78, fullMark: 100 },
-  { subject: "KIM", value: 92, fullMark: 100 },
-  { subject: "BIO", value: 88, fullMark: 100 },
-  { subject: "ING", value: 75, fullMark: 100 },
-  { subject: "IND", value: 82, fullMark: 100 },
-];
-
-const averages = [
-  { label: "Matematika", value: 85, trend: "+3" },
-  { label: "Fisika", value: 78, trend: "-2" },
-  { label: "Kimia", value: 92, trend: "+5" },
-  { label: "Biologi", value: 88, trend: "+1" },
-  { label: "B. Inggris", value: 75, trend: "+4" },
-  { label: "B. Indonesia", value: 82, trend: "0" },
-];
+import { getRadarChartData, getSubjectAverages } from "@/data/grades";
 
 export const GradesRadarChart = () => {
+  const subjectData = getRadarChartData();
+  const averages = getSubjectAverages();
   const totalAverage = Math.round(averages.reduce((sum, item) => sum + item.value, 0) / averages.length);
 
   return (

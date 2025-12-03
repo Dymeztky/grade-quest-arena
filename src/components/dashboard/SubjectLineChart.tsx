@@ -1,32 +1,12 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
+import { Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-
-const subjects = ["Matematika", "Fisika", "Kimia", "Biologi", "B. Inggris", "B. Indonesia"];
-
-const generateData = (subject: string) => {
-  const baseValues: Record<string, number[]> = {
-    "Matematika": [78, 82, 85, 80, 88, 85, 90],
-    "Fisika": [75, 78, 72, 80, 76, 82, 78],
-    "Kimia": [85, 88, 90, 92, 89, 94, 92],
-    "Biologi": [82, 85, 88, 86, 90, 87, 88],
-    "B. Inggris": [70, 72, 75, 78, 73, 76, 75],
-    "B. Indonesia": [80, 82, 78, 85, 83, 80, 82],
-  };
-  
-  const values = baseValues[subject] || [80, 82, 84, 83, 85, 84, 86];
-  const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul"];
-  
-  return months.map((month, i) => ({
-    month,
-    nilai: values[i],
-    target: 80,
-  }));
-};
+import { getMonthlyData, getSubjectNames } from "@/data/grades";
 
 export const SubjectLineChart = () => {
-  const [selectedSubject, setSelectedSubject] = useState("Matematika");
-  const data = generateData(selectedSubject);
+  const subjects = getSubjectNames();
+  const [selectedSubject, setSelectedSubject] = useState(subjects[0]);
+  const data = getMonthlyData(selectedSubject);
 
   return (
     <div className="glass-card p-6">
