@@ -110,7 +110,7 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
 
       {/* Bottom Actions */}
       <div className="p-4 border-t border-sidebar-border space-y-1">
-        <NavItem icon={Settings} label="Pengaturan" onClick={() => onNavigate("settings")} />
+        <NavItem icon={Settings} label="Pengaturan" active={activeItem === "settings"} onClick={() => onNavigate("settings")} />
         <NavItem icon={LogOut} label="Keluar" />
       </div>
     </aside>
