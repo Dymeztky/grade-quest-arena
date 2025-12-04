@@ -14,7 +14,342 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      avatar_accessories: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          price: number
+          rarity: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          price?: number
+          rarity?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          price?: number
+          rarity?: string | null
+        }
+        Relationships: []
+      }
+      barter_offers: {
+        Row: {
+          created_at: string | null
+          id: string
+          offered_accessory_id: string
+          offerer_id: string
+          receiver_id: string | null
+          status: string | null
+          wanted_accessory_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          offered_accessory_id: string
+          offerer_id: string
+          receiver_id?: string | null
+          status?: string | null
+          wanted_accessory_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          offered_accessory_id?: string
+          offerer_id?: string
+          receiver_id?: string | null
+          status?: string | null
+          wanted_accessory_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "barter_offers_offered_accessory_id_fkey"
+            columns: ["offered_accessory_id"]
+            isOneToOne: false
+            referencedRelation: "avatar_accessories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "barter_offers_wanted_accessory_id_fkey"
+            columns: ["wanted_accessory_id"]
+            isOneToOne: false
+            referencedRelation: "avatar_accessories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      challenges: {
+        Row: {
+          challenger_id: string
+          created_at: string | null
+          deadline: string
+          id: string
+          opponent_id: string | null
+          stake_accessory_id: string | null
+          stake_coins: number | null
+          status: string | null
+          subject_id: string
+          winner_id: string | null
+        }
+        Insert: {
+          challenger_id: string
+          created_at?: string | null
+          deadline: string
+          id?: string
+          opponent_id?: string | null
+          stake_accessory_id?: string | null
+          stake_coins?: number | null
+          status?: string | null
+          subject_id: string
+          winner_id?: string | null
+        }
+        Update: {
+          challenger_id?: string
+          created_at?: string | null
+          deadline?: string
+          id?: string
+          opponent_id?: string | null
+          stake_accessory_id?: string | null
+          stake_coins?: number | null
+          status?: string | null
+          subject_id?: string
+          winner_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "challenges_stake_accessory_id_fkey"
+            columns: ["stake_accessory_id"]
+            isOneToOne: false
+            referencedRelation: "avatar_accessories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "challenges_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      friendships: {
+        Row: {
+          created_at: string | null
+          friend_id: string
+          id: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          friend_id: string
+          id?: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          friend_id?: string
+          id?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      goals: {
+        Row: {
+          created_at: string | null
+          deadline: string | null
+          id: string
+          predicted_value: number | null
+          subject_id: string
+          target_value: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          deadline?: string | null
+          id?: string
+          predicted_value?: number | null
+          subject_id: string
+          target_value: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          deadline?: string | null
+          id?: string
+          predicted_value?: number | null
+          subject_id?: string
+          target_value?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goals_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      grades: {
+        Row: {
+          academic_year: string | null
+          created_at: string | null
+          id: string
+          period: string | null
+          subject_id: string
+          user_id: string
+          value: number
+        }
+        Insert: {
+          academic_year?: string | null
+          created_at?: string | null
+          id?: string
+          period?: string | null
+          subject_id: string
+          user_id: string
+          value: number
+        }
+        Update: {
+          academic_year?: string | null
+          created_at?: string | null
+          id?: string
+          period?: string | null
+          subject_id?: string
+          user_id?: string
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grades_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_base: string | null
+          coins: number | null
+          created_at: string | null
+          display_name: string | null
+          id: string
+          level: number | null
+          rank: number | null
+          streak: number | null
+          updated_at: string | null
+          user_id: string
+          username: string | null
+          xp: number | null
+          xp_max: number | null
+        }
+        Insert: {
+          avatar_base?: string | null
+          coins?: number | null
+          created_at?: string | null
+          display_name?: string | null
+          id?: string
+          level?: number | null
+          rank?: number | null
+          streak?: number | null
+          updated_at?: string | null
+          user_id: string
+          username?: string | null
+          xp?: number | null
+          xp_max?: number | null
+        }
+        Update: {
+          avatar_base?: string | null
+          coins?: number | null
+          created_at?: string | null
+          display_name?: string | null
+          id?: string
+          level?: number | null
+          rank?: number | null
+          streak?: number | null
+          updated_at?: string | null
+          user_id?: string
+          username?: string | null
+          xp?: number | null
+          xp_max?: number | null
+        }
+        Relationships: []
+      }
+      subjects: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          short_name: string
+          target_value: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          short_name: string
+          target_value?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          short_name?: string
+          target_value?: number | null
+        }
+        Relationships: []
+      }
+      user_accessories: {
+        Row: {
+          accessory_id: string
+          equipped: boolean | null
+          id: string
+          purchased_at: string | null
+          user_id: string
+        }
+        Insert: {
+          accessory_id: string
+          equipped?: boolean | null
+          id?: string
+          purchased_at?: string | null
+          user_id: string
+        }
+        Update: {
+          accessory_id?: string
+          equipped?: boolean | null
+          id?: string
+          purchased_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_accessories_accessory_id_fkey"
+            columns: ["accessory_id"]
+            isOneToOne: false
+            referencedRelation: "avatar_accessories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
