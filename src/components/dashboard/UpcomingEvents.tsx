@@ -14,27 +14,27 @@ interface Event {
 const events: Event[] = [
   {
     id: "1",
-    title: "Ujian Tengah Semester",
-    subject: "Matematika",
-    date: "15 Des 2025",
+    title: "Midterm Exam",
+    subject: "Mathematics",
+    date: "Dec 15, 2025",
     time: "08:00",
     type: "exam",
     daysLeft: 12,
   },
   {
     id: "2",
-    title: "Kuis Bab 5",
-    subject: "Fisika",
-    date: "10 Des 2025",
+    title: "Chapter 5 Quiz",
+    subject: "Physics",
+    date: "Dec 10, 2025",
     time: "10:30",
     type: "quiz",
     daysLeft: 7,
   },
   {
     id: "3",
-    title: "Tugas Praktikum",
-    subject: "Kimia",
-    date: "8 Des 2025",
+    title: "Lab Assignment",
+    subject: "Chemistry",
+    date: "Dec 8, 2025",
     time: "14:00",
     type: "assignment",
     daysLeft: 5,
@@ -59,9 +59,9 @@ export const UpcomingEvents = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Calendar className="w-5 h-5 text-primary" />
-          <h3 className="font-display text-xl font-bold">Jadwal Mendatang</h3>
+          <h3 className="font-display text-xl font-bold">Upcoming Events</h3>
         </div>
-        <button className="text-sm text-primary hover:underline">Kalender</button>
+        <button className="text-sm text-primary hover:underline">Calendar</button>
       </div>
 
       <div className="space-y-3">
@@ -82,7 +82,7 @@ export const UpcomingEvents = () => {
                 </p>
               </div>
               <span className={cn("px-2 py-0.5 text-xs rounded-full font-semibold", typeBadgeStyles[event.type])}>
-                {event.type === "exam" ? "Ujian" : event.type === "quiz" ? "Kuis" : "Tugas"}
+                {event.type === "exam" ? "Exam" : event.type === "quiz" ? "Quiz" : "Assignment"}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm">
@@ -100,7 +100,7 @@ export const UpcomingEvents = () => {
                 "font-display font-bold",
                 event.daysLeft <= 3 ? "text-destructive" : event.daysLeft <= 7 ? "text-gold" : "text-muted-foreground"
               )}>
-                {event.daysLeft} hari lagi
+                {event.daysLeft} days left
               </span>
             </div>
           </div>

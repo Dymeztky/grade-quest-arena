@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Target, TrendingUp, Calculator, Brain, Sparkles } from "lucide-react";
 import { getSubjectAverages, getMonthlyData, getSubjectNames } from "@/data/grades";
@@ -104,7 +103,7 @@ export const GoalSettingPage = () => {
             Goal Setting
           </h1>
           <p className="text-muted-foreground mt-1">
-            Set target nilai dan lihat prediksi untuk mencapainya
+            Set your grade targets and see predictions to achieve them
           </p>
         </div>
       </div>
@@ -115,7 +114,7 @@ export const GoalSettingPage = () => {
           <div className="flex items-center gap-3">
             <Brain className="w-6 h-6 text-primary" />
             <div>
-              <p className="text-sm text-muted-foreground">Prediksi AI</p>
+              <p className="text-sm text-muted-foreground">AI Prediction</p>
               <p className="font-semibold">Linear Regression</p>
             </div>
           </div>
@@ -124,7 +123,7 @@ export const GoalSettingPage = () => {
           <div className="flex items-center gap-3">
             <Calculator className="w-6 h-6 text-gold" />
             <div>
-              <p className="text-sm text-muted-foreground">Sisa Ujian</p>
+              <p className="text-sm text-muted-foreground">Remaining Tests</p>
               <p className="font-semibold">3 Tests</p>
             </div>
           </div>
@@ -159,14 +158,14 @@ export const GoalSettingPage = () => {
               >
                 {goal.predictedValue >= goal.targetValue
                   ? "On Track"
-                  : "Butuh Effort"}
+                  : "Needs Effort"}
               </span>
             </div>
 
             {/* Progress Bar */}
             <div className="mb-4">
               <div className="flex justify-between text-sm mb-1">
-                <span className="text-muted-foreground">Progress ke Target</span>
+                <span className="text-muted-foreground">Progress to Target</span>
                 <span className="font-semibold">
                   {goal.currentValue} / {goal.targetValue}
                 </span>
@@ -182,11 +181,11 @@ export const GoalSettingPage = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mb-4">
               <div className="text-center p-3 rounded-lg bg-muted/30">
-                <p className="text-xs text-muted-foreground mb-1">Sekarang</p>
+                <p className="text-xs text-muted-foreground mb-1">Current</p>
                 <p className="text-xl font-bold text-primary">{goal.currentValue}</p>
               </div>
               <div className="text-center p-3 rounded-lg bg-muted/30">
-                <p className="text-xs text-muted-foreground mb-1">Prediksi</p>
+                <p className="text-xs text-muted-foreground mb-1">Predicted</p>
                 <p className={`text-xl font-bold ${getStatusColor(goal.currentValue, goal.targetValue, goal.predictedValue)}`}>
                   {goal.predictedValue}
                 </p>
@@ -218,8 +217,8 @@ export const GoalSettingPage = () => {
               />
               <p className="text-xs text-muted-foreground">
                 {goal.requiredMinimum > 100
-                  ? "Target tidak dapat dicapai dengan sisa ujian"
-                  : `Kamu perlu minimal ${goal.requiredMinimum} di ujian berikutnya`}
+                  ? "Target cannot be reached with remaining tests"
+                  : `You need at least ${goal.requiredMinimum} on your next test`}
               </p>
             </div>
           </div>
@@ -230,20 +229,20 @@ export const GoalSettingPage = () => {
       <div className="glass-card p-6 border-l-4 border-primary">
         <h3 className="font-display text-lg font-bold mb-3 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-primary" />
-          Tips untuk Mencapai Target
+          Tips to Achieve Your Targets
         </h3>
         <ul className="space-y-2 text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="text-primary">•</span>
-            <span>Fokus pada mata pelajaran yang berstatus "Butuh Effort"</span>
+            <span>Focus on subjects marked as "Needs Effort"</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary">•</span>
-            <span>Review materi secara konsisten, minimal 30 menit per hari</span>
+            <span>Review material consistently, at least 30 minutes per day</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary">•</span>
-            <span>Gunakan Grim Reaper untuk challenge teman dan tingkatkan motivasi</span>
+            <span>Use Grim Reaper to challenge friends and boost motivation</span>
           </li>
         </ul>
       </div>

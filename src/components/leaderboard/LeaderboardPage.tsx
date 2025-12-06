@@ -6,31 +6,31 @@ import { cn } from "@/lib/utils";
 interface LeaderboardEntry {
   rank: number;
   name: string;
-  level: number;
-  xp: number;
+  avgGrade: number;
+  totalSubjects: number;
   change: "up" | "down" | "same";
   isCurrentUser?: boolean;
 }
 
 const leaderboardData: LeaderboardEntry[] = [
-  { rank: 1, name: "Sarah Wijaya", level: 32, xp: 8500, change: "same" },
-  { rank: 2, name: "Budi Santoso", level: 30, xp: 7800, change: "up" },
-  { rank: 3, name: "Maya Putri", level: 29, xp: 7200, change: "down" },
-  { rank: 4, name: "Rizki Rahman", level: 28, xp: 6900, change: "up" },
-  { rank: 5, name: "Diana Chen", level: 27, xp: 6500, change: "same" },
-  { rank: 6, name: "Ahmad Fauzi", level: 26, xp: 6200, change: "up" },
-  { rank: 7, name: "Lisa Anggraini", level: 26, xp: 6000, change: "down" },
-  { rank: 8, name: "Kevin Pratama", level: 25, xp: 5800, change: "same" },
-  { rank: 9, name: "Nina Sari", level: 25, xp: 5600, change: "up" },
-  { rank: 10, name: "Dimas Nugroho", level: 24, xp: 5400, change: "down" },
-  { rank: 11, name: "Rina Maharani", level: 24, xp: 5200, change: "same" },
-  { rank: 12, name: "Alex Pratama", level: 24, xp: 2450, change: "up", isCurrentUser: true },
+  { rank: 1, name: "Sarah Wijaya", avgGrade: 95, totalSubjects: 8, change: "same" },
+  { rank: 2, name: "Budi Santoso", avgGrade: 92, totalSubjects: 8, change: "up" },
+  { rank: 3, name: "Maya Putri", avgGrade: 90, totalSubjects: 8, change: "down" },
+  { rank: 4, name: "Rizki Rahman", avgGrade: 88, totalSubjects: 8, change: "up" },
+  { rank: 5, name: "Diana Chen", avgGrade: 87, totalSubjects: 8, change: "same" },
+  { rank: 6, name: "Ahmad Fauzi", avgGrade: 85, totalSubjects: 8, change: "up" },
+  { rank: 7, name: "Lisa Anggraini", avgGrade: 84, totalSubjects: 8, change: "down" },
+  { rank: 8, name: "Kevin Pratama", avgGrade: 82, totalSubjects: 8, change: "same" },
+  { rank: 9, name: "Nina Sari", avgGrade: 81, totalSubjects: 8, change: "up" },
+  { rank: 10, name: "Dimas Nugroho", avgGrade: 80, totalSubjects: 8, change: "down" },
+  { rank: 11, name: "Rina Maharani", avgGrade: 79, totalSubjects: 8, change: "same" },
+  { rank: 12, name: "Alex Pratama", avgGrade: 78, totalSubjects: 8, change: "up", isCurrentUser: true },
 ];
 
-const grades = ["XII IPA", "XII IPS", "XI IPA", "XI IPS", "X IPA", "X IPS"];
+const grades = ["Grade 12 Science", "Grade 12 Social", "Grade 11 Science", "Grade 11 Social", "Grade 10 Science", "Grade 10 Social"];
 
 export const LeaderboardPage = () => {
-  const [selectedGrade, setSelectedGrade] = useState("XII IPA");
+  const [selectedGrade, setSelectedGrade] = useState("Grade 12 Science");
 
   const getRankIcon = (rank: number) => {
     if (rank === 1) return <Crown className="w-6 h-6 text-gold" />;
@@ -53,7 +53,7 @@ export const LeaderboardPage = () => {
           <Trophy className="w-8 h-8 text-gold" />
           <h2 className="font-display text-3xl font-bold">Leaderboard</h2>
         </div>
-        <p className="text-muted-foreground">Ranking berdasarkan level dan XP per angkatan</p>
+        <p className="text-muted-foreground">Ranking by average grade per class</p>
       </div>
 
       {/* Grade Filter */}
@@ -80,7 +80,7 @@ export const LeaderboardPage = () => {
             <div className="bg-muted-foreground/20 rounded-t-lg pt-8 pb-4 px-4 w-24">
               <Medal className="w-6 h-6 text-muted-foreground mx-auto mb-1" />
               <p className="font-semibold text-sm truncate">{leaderboardData[1].name.split(" ")[0]}</p>
-              <p className="text-xs text-muted-foreground">Lvl {leaderboardData[1].level}</p>
+              <p className="text-xs text-muted-foreground">Avg {leaderboardData[1].avgGrade}</p>
             </div>
           </div>
 
@@ -92,7 +92,7 @@ export const LeaderboardPage = () => {
             <div className="bg-gold/20 rounded-t-lg pt-10 pb-4 px-4 w-28 border-t-4 border-gold">
               <Crown className="w-8 h-8 text-gold mx-auto mb-1" />
               <p className="font-semibold truncate">{leaderboardData[0].name.split(" ")[0]}</p>
-              <p className="text-xs text-muted-foreground">Lvl {leaderboardData[0].level}</p>
+              <p className="text-xs text-muted-foreground">Avg {leaderboardData[0].avgGrade}</p>
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export const LeaderboardPage = () => {
             <div className="bg-amber-700/20 rounded-t-lg pt-6 pb-4 px-4 w-24">
               <Medal className="w-6 h-6 text-amber-700 mx-auto mb-1" />
               <p className="font-semibold text-sm truncate">{leaderboardData[2].name.split(" ")[0]}</p>
-              <p className="text-xs text-muted-foreground">Lvl {leaderboardData[2].level}</p>
+              <p className="text-xs text-muted-foreground">Avg {leaderboardData[2].avgGrade}</p>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@ export const LeaderboardPage = () => {
       {/* Full Leaderboard */}
       <div className="glass-card overflow-hidden">
         <div className="p-4 border-b border-border">
-          <h3 className="font-display font-bold">Ranking Lengkap</h3>
+          <h3 className="font-display font-bold">Full Rankings</h3>
         </div>
         <div className="divide-y divide-border">
           {leaderboardData.map((entry) => (
@@ -144,15 +144,15 @@ export const LeaderboardPage = () => {
                 <p className="font-semibold flex items-center gap-2">
                   {entry.name}
                   {entry.isCurrentUser && (
-                    <span className="px-2 py-0.5 text-xs rounded-full bg-primary/20 text-primary">Kamu</span>
+                    <span className="px-2 py-0.5 text-xs rounded-full bg-primary/20 text-primary">You</span>
                   )}
                 </p>
-                <p className="text-sm text-muted-foreground">Level {entry.level}</p>
+                <p className="text-sm text-muted-foreground">{entry.totalSubjects} Subjects</p>
               </div>
 
-              {/* XP */}
+              {/* Average Grade */}
               <div className="text-right">
-                <p className="font-display font-bold text-primary">{entry.xp.toLocaleString()} XP</p>
+                <p className="font-display font-bold text-primary">{entry.avgGrade} Avg</p>
                 <div className="flex items-center gap-1 justify-end">
                   {getChangeIcon(entry.change)}
                 </div>

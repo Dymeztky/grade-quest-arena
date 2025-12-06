@@ -15,18 +15,18 @@ interface ShopItem {
 }
 
 const shopItems: ShopItem[] = [
-  { id: "1", name: "Cyber Helmet", description: "Futuristic helmet untuk avatar", price: 250, category: "avatar", rarity: "rare" },
-  { id: "2", name: "Golden Crown", description: "Crown untuk yang terbaik", price: 500, category: "avatar", rarity: "epic" },
-  { id: "3", name: "Neon Theme", description: "Theme cyberpunk neon", price: 300, category: "theme", rarity: "rare" },
-  { id: "4", name: "Dark Forest", description: "Theme gelap misterius", price: 200, category: "theme", rarity: "common" },
-  { id: "5", name: "XP Booster", description: "+50% XP selama 24 jam", price: 150, category: "item", rarity: "common" },
-  { id: "6", name: "Lucky Charm", description: "Bonus koin dari achievement", price: 350, category: "item", rarity: "rare" },
-  { id: "7", name: "Dragon Wings", description: "Wings legendary untuk avatar", price: 1000, category: "avatar", rarity: "legendary" },
-  { id: "8", name: "Galaxy Theme", description: "Theme luar angkasa", price: 750, category: "theme", rarity: "epic" },
+  { id: "1", name: "Cyber Helmet", description: "Futuristic helmet for avatar", price: 250, category: "avatar", rarity: "rare" },
+  { id: "2", name: "Golden Crown", description: "Crown for the best players", price: 500, category: "avatar", rarity: "epic" },
+  { id: "3", name: "Neon Theme", description: "Cyberpunk neon theme", price: 300, category: "theme", rarity: "rare" },
+  { id: "4", name: "Dark Forest", description: "Dark mysterious theme", price: 200, category: "theme", rarity: "common" },
+  { id: "5", name: "XP Booster", description: "+50% XP for 24 hours", price: 150, category: "item", rarity: "common" },
+  { id: "6", name: "Lucky Charm", description: "Bonus coins from achievements", price: 350, category: "item", rarity: "rare" },
+  { id: "7", name: "Dragon Wings", description: "Legendary wings for avatar", price: 1000, category: "avatar", rarity: "legendary" },
+  { id: "8", name: "Galaxy Theme", description: "Outer space theme", price: 750, category: "theme", rarity: "epic" },
 ];
 
 const categories = [
-  { id: "all", label: "Semua", icon: Sparkles },
+  { id: "all", label: "All", icon: Sparkles },
   { id: "avatar", label: "Avatar", icon: User },
   { id: "theme", label: "Theme", icon: Palette },
   { id: "item", label: "Item", icon: Star },
@@ -61,7 +61,7 @@ export const ShopPage = () => {
       <div className="glass-card p-6 flex items-center justify-between">
         <div>
           <h2 className="font-display text-3xl font-bold mb-1">Shop</h2>
-          <p className="text-muted-foreground">Beli item, avatar, dan theme keren!</p>
+          <p className="text-muted-foreground">Buy items, avatars, and cool themes!</p>
         </div>
         <div className="coin-display text-lg">
           <Coins className="w-6 h-6 text-gold" />
@@ -131,7 +131,7 @@ export const ShopPage = () => {
                   size="sm"
                   disabled={item.owned || coins < item.price}
                 >
-                  {item.owned ? "Dimiliki" : "Beli"}
+                  {item.owned ? "Owned" : "Buy"}
                 </Button>
               </div>
             </div>
