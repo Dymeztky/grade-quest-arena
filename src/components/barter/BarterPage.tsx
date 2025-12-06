@@ -130,13 +130,13 @@ export const BarterPage = () => {
     if (error) {
       toast({
         title: "Error",
-        description: "Gagal membuat penawaran",
+        description: "Failed to create offer",
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Berhasil!",
-        description: "Penawaran barter sudah dibuat",
+        title: "Success!",
+        description: "Barter offer has been created",
       });
       setCreateDialogOpen(false);
       setSelectedOffered(null);
@@ -153,8 +153,8 @@ export const BarterPage = () => {
       const hasItem = myAccessories.some((a) => a.id === offer.wanted_accessory?.id);
       if (!hasItem) {
         toast({
-          title: "Tidak Punya Item",
-          description: `Kamu tidak punya ${offer.wanted_accessory.name}`,
+          title: "Missing Item",
+          description: `You don't have ${offer.wanted_accessory.name}`,
           variant: "destructive",
         });
         return;
@@ -168,8 +168,8 @@ export const BarterPage = () => {
       .eq("id", offer.id);
 
     toast({
-      title: "Barter Berhasil!",
-      description: "Item sudah ditukar",
+      title: "Barter Successful!",
+      description: "Items have been exchanged",
     });
 
     fetchOffers();
@@ -181,8 +181,8 @@ export const BarterPage = () => {
     await supabase.from("barter_offers").update({ status: "cancelled" }).eq("id", offerId);
 
     toast({
-      title: "Dibatalkan",
-      description: "Penawaran barter dibatalkan",
+      title: "Cancelled",
+      description: "Barter offer has been cancelled",
     });
 
     fetchOffers();
@@ -206,7 +206,7 @@ export const BarterPage = () => {
             Barter
           </h1>
           <p className="text-muted-foreground mt-1">
-            Tukar item dengan pemain lain
+            Trade items with other players
           </p>
         </div>
 
@@ -214,18 +214,18 @@ export const BarterPage = () => {
           <DialogTrigger asChild>
             <Button variant="gold">
               <Plus className="w-4 h-4 mr-2" />
-              Buat Penawaran
+              Create Offer
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle>Buat Penawaran Barter</DialogTitle>
+              <DialogTitle>Create Barter Offer</DialogTitle>
             </DialogHeader>
 
             <div className="grid grid-cols-2 gap-6 mt-4">
               {/* My Item to Offer */}
               <div>
-                <h4 className="font-semibold mb-3">Item yang Ditawarkan</h4>
+                <h4 className="font-semibold mb-3">Item to Offer</h4>
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   {myAccessories.map((accessory) => (
                     <button
@@ -249,14 +249,14 @@ export const BarterPage = () => {
                     </button>
                   ))}
                   {myAccessories.length === 0 && (
-                    <p className="text-muted-foreground text-sm">Belum punya item</p>
+                    <p className="text-muted-foreground text-sm">No items owned</p>
                   )}
                 </div>
               </div>
 
               {/* Wanted Item */}
               <div>
-                <h4 className="font-semibold mb-3">Item yang Diinginkan (opsional)</h4>
+                <h4 className="font-semibold mb-3">Wanted Item (optional)</h4>
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   <button
                     onClick={() => setSelectedWanted(null)}
@@ -266,8 +266,8 @@ export const BarterPage = () => {
                         : "border-border hover:border-primary/50"
                     }`}
                   >
-                    <p className="font-medium">Terima Apa Saja</p>
-                    <p className="text-xs text-muted-foreground">Biarkan penawar memilih</p>
+                    <p className="font-medium">Accept Anything</p>
+                    <p className="text-xs text-muted-foreground">Let the offerer choose</p>
                   </button>
                   {allAccessories
                     .filter((a) => !myAccessories.some((m) => m.id === a.id))
@@ -302,7 +302,7 @@ export const BarterPage = () => {
               className="w-full mt-4"
               variant="gold"
             >
-              Buat Penawaran
+              Create Offer
             </Button>
           </DialogContent>
         </Dialog>
@@ -311,7 +311,7 @@ export const BarterPage = () => {
       {/* My Offers */}
       {myOffers.length > 0 && (
         <div className="space-y-4">
-          <h3 className="font-display text-xl font-bold">Penawaran Saya</h3>
+          <h3 className="font-display text-xl font-bold">My Offers</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {myOffers.map((offer) => (
               <div
@@ -331,10 +331,10 @@ export const BarterPage = () => {
                     }`}
                   >
                     {offer.status === "open"
-                      ? "Menunggu"
+                      ? "Pending"
                       : offer.status === "accepted"
-                      ? "Diterima"
-                      : "Dibatalkan"}
+                      ? "Accepted"
+                      : "Cancelled"}
                   </span>
                   {offer.status === "open" && (
                     <Button size="sm" variant="ghost" onClick={() => cancelOffer(offer.id)}>
@@ -358,7 +358,7 @@ export const BarterPage = () => {
                     ) : (
                       <>
                         <span className="text-3xl">❓</span>
-                        <p className="text-sm mt-1">Apa saja</p>
+                        <p className="text-sm mt-1">Anything</p>
                       </>
                     )}
                   </div>
@@ -371,7 +371,7 @@ export const BarterPage = () => {
 
       {/* Available Offers */}
       <div className="space-y-4">
-        <h3 className="font-display text-xl font-bold">Penawaran Tersedia</h3>
+        <h3 className="font-display text-xl font-bold">Available Offers</h3>
         {offers.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {offers.map((offer) => (
@@ -404,7 +404,7 @@ export const BarterPage = () => {
                     ) : (
                       <>
                         <span className="text-3xl">❓</span>
-                        <p className="text-sm mt-1">Apa saja</p>
+                        <p className="text-sm mt-1">Anything</p>
                       </>
                     )}
                   </div>
@@ -416,7 +416,7 @@ export const BarterPage = () => {
                   onClick={() => acceptOffer(offer)}
                 >
                   <Check className="w-4 h-4 mr-2" />
-                  Terima Barter
+                  Accept Barter
                 </Button>
               </div>
             ))}
@@ -424,7 +424,7 @@ export const BarterPage = () => {
         ) : (
           <div className="glass-card p-12 text-center">
             <Repeat className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-            <p className="text-muted-foreground">Tidak ada penawaran barter saat ini</p>
+            <p className="text-muted-foreground">No barter offers available</p>
           </div>
         )}
       </div>

@@ -14,41 +14,41 @@ const activities: ActivityItem[] = [
   {
     id: "1",
     type: "grade_up",
-    title: "Nilai Naik!",
-    description: "Matematika: 78 → 85",
-    time: "2 jam lalu",
+    title: "Grade Increased!",
+    description: "Mathematics: 78 → 85",
+    time: "2 hours ago",
     value: "+50 XP",
   },
   {
     id: "2",
     type: "achievement",
     title: "Achievement Unlocked",
-    description: "Nilai Sempurna di Kimia",
-    time: "5 jam lalu",
-    value: "+100 Koin",
+    description: "Perfect Score in Chemistry",
+    time: "5 hours ago",
+    value: "+100 Coins",
   },
   {
     id: "3",
     type: "purchase",
-    title: "Item Dibeli",
+    title: "Item Purchased",
     description: "Cyber Helmet - Avatar",
-    time: "1 hari lalu",
-    value: "-250 Koin",
+    time: "1 day ago",
+    value: "-250 Coins",
   },
   {
     id: "4",
     type: "goal",
-    title: "Target Tercapai",
-    description: "Fisika mencapai target 80",
-    time: "2 hari lalu",
+    title: "Target Achieved",
+    description: "Physics reached target of 80",
+    time: "2 days ago",
     value: "+75 XP",
   },
   {
     id: "5",
     type: "friend",
-    title: "Teman Baru",
-    description: "Sarah bergabung sebagai teman",
-    time: "3 hari lalu",
+    title: "New Friend",
+    description: "Sarah joined as a friend",
+    time: "3 days ago",
   },
 ];
 
@@ -83,8 +83,8 @@ export const RecentActivity = () => {
   return (
     <div className="glass-card p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-display text-xl font-bold">Aktivitas Terbaru</h3>
-        <button className="text-sm text-primary hover:underline">Lihat Semua</button>
+        <h3 className="font-display text-xl font-bold">Recent Activity</h3>
+        <button className="text-sm text-primary hover:underline">View All</button>
       </div>
 
       <div className="space-y-4">

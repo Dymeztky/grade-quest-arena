@@ -95,8 +95,8 @@ export const AvatarPage = () => {
 
     if (profile.coins < accessory.price) {
       toast({
-        title: "Koin Tidak Cukup",
-        description: `Kamu butuh ${accessory.price - profile.coins} koin lagi`,
+        title: "Not Enough Coins",
+        description: `You need ${accessory.price - profile.coins} more coins`,
         variant: "destructive",
       });
       return;
@@ -111,7 +111,7 @@ export const AvatarPage = () => {
     if (coinError) {
       toast({
         title: "Error",
-        description: "Gagal melakukan pembelian",
+        description: "Failed to complete purchase",
         variant: "destructive",
       });
       return;
@@ -129,15 +129,15 @@ export const AvatarPage = () => {
     if (accessoryError) {
       toast({
         title: "Error",
-        description: "Gagal menambahkan item",
+        description: "Failed to add item",
         variant: "destructive",
       });
       return;
     }
 
     toast({
-      title: "Berhasil!",
-      description: `${accessory.name} sudah menjadi milikmu!`,
+      title: "Success!",
+      description: `${accessory.name} is now yours!`,
     });
 
     refreshProfile();
@@ -170,7 +170,7 @@ export const AvatarPage = () => {
 
     toast({
       title: "Equipped!",
-      description: `${accessory.name} sudah dipakai`,
+      description: `${accessory.name} is now equipped`,
     });
 
     fetchAccessories();
@@ -193,7 +193,7 @@ export const AvatarPage = () => {
 
     toast({
       title: "Unequipped",
-      description: `${accessory.name} sudah dilepas`,
+      description: `${accessory.name} has been removed`,
     });
 
     fetchAccessories();
@@ -227,7 +227,7 @@ export const AvatarPage = () => {
             Avatar Customization
           </h1>
           <p className="text-muted-foreground mt-1">
-            Kustomisasi avatar kamu dengan aksesoris keren
+            Customize your avatar with cool accessories
           </p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30">
@@ -242,7 +242,7 @@ export const AvatarPage = () => {
           <div className="glass-card p-6 sticky top-6">
             <h3 className="font-display text-lg font-bold mb-4 flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-gold" />
-              Preview Avatar
+              Avatar Preview
             </h3>
 
             {/* Avatar Display */}
@@ -304,13 +304,13 @@ export const AvatarPage = () => {
                       variant="ghost"
                       onClick={() => handleUnequip(item)}
                     >
-                      Lepas
+                      Remove
                     </Button>
                   </div>
                 ))
               ) : (
                 <p className="text-sm text-muted-foreground italic">
-                  Belum ada item yang dipakai
+                  No items equipped
                 </p>
               )}
             </div>
@@ -329,7 +329,7 @@ export const AvatarPage = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className="capitalize"
               >
-                {cat === "all" ? "Semua" : categoryIcons[cat]} {cat !== "all" && cat}
+                {cat === "all" ? "All" : categoryIcons[cat]} {cat !== "all" && cat}
               </Button>
             ))}
           </div>
@@ -409,7 +409,7 @@ export const AvatarPage = () => {
                         ) : (
                           <ShoppingBag className="w-4 h-4 mr-1" />
                         )}
-                        Beli
+                        Buy
                       </Button>
                     )}
                   </div>

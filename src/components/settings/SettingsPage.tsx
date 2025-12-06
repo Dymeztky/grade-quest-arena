@@ -34,14 +34,14 @@ export const SettingsPage = () => {
       toast({
         title: "Error",
         description: error.message.includes("duplicate")
-          ? "Username sudah dipakai"
-          : "Gagal menyimpan perubahan",
+          ? "Username already taken"
+          : "Failed to save changes",
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Tersimpan!",
-        description: "Profil berhasil diperbarui",
+        title: "Saved!",
+        description: "Profile updated successfully",
       });
       refreshProfile();
     }
@@ -53,7 +53,7 @@ export const SettingsPage = () => {
     await signOut();
     toast({
       title: "Logged Out",
-      description: "Sampai jumpa lagi!",
+      description: "See you again!",
     });
   };
 
@@ -63,10 +63,10 @@ export const SettingsPage = () => {
       <div>
         <h1 className="font-display text-3xl font-bold flex items-center gap-3">
           <Settings className="w-8 h-8 text-primary" />
-          Pengaturan
+          Settings
         </h1>
         <p className="text-muted-foreground mt-1">
-          Kelola akun dan preferensi kamu
+          Manage your account and preferences
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export const SettingsPage = () => {
       <div className="glass-card p-6 space-y-6">
         <div className="flex items-center gap-3 pb-4 border-b border-border">
           <User className="w-5 h-5 text-primary" />
-          <h2 className="font-display text-lg font-bold">Profil</h2>
+          <h2 className="font-display text-lg font-bold">Profile</h2>
         </div>
 
         <div className="space-y-4">
@@ -84,12 +84,12 @@ export const SettingsPage = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="displayName">Nama Tampilan</Label>
+            <Label htmlFor="displayName">Display Name</Label>
             <Input
               id="displayName"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="Nama kamu"
+              placeholder="Your name"
             />
           </div>
 
@@ -99,13 +99,13 @@ export const SettingsPage = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/\s/g, ""))}
-              placeholder="username_unik"
+              placeholder="unique_username"
             />
           </div>
 
           <Button onClick={handleSaveProfile} disabled={loading} variant="gold">
             <Save className="w-4 h-4 mr-2" />
-            {loading ? "Menyimpan..." : "Simpan Perubahan"}
+            {loading ? "Saving..." : "Save Changes"}
           </Button>
         </div>
       </div>
@@ -114,7 +114,7 @@ export const SettingsPage = () => {
       <div className="glass-card p-6">
         <div className="flex items-center gap-3 pb-4 border-b border-border mb-4">
           <Shield className="w-5 h-5 text-primary" />
-          <h2 className="font-display text-lg font-bold">Statistik Akun</h2>
+          <h2 className="font-display text-lg font-bold">Account Stats</h2>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -124,7 +124,7 @@ export const SettingsPage = () => {
           </div>
           <div className="p-4 rounded-lg bg-muted/30 text-center">
             <p className="text-2xl font-bold text-gold">{profile?.coins || 0}</p>
-            <p className="text-sm text-muted-foreground">Koin</p>
+            <p className="text-sm text-muted-foreground">Coins</p>
           </div>
           <div className="p-4 rounded-lg bg-muted/30 text-center">
             <p className="text-2xl font-bold text-primary">{profile?.xp || 0}</p>
@@ -141,15 +141,15 @@ export const SettingsPage = () => {
       <div className="glass-card p-6 space-y-6">
         <div className="flex items-center gap-3 pb-4 border-b border-border">
           <Bell className="w-5 h-5 text-primary" />
-          <h2 className="font-display text-lg font-bold">Preferensi</h2>
+          <h2 className="font-display text-lg font-bold">Preferences</h2>
         </div>
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <Label>Notifikasi</Label>
+              <Label>Notifications</Label>
               <p className="text-sm text-muted-foreground">
-                Terima notifikasi challenge dan friend request
+                Receive notifications for challenges and friend requests
               </p>
             </div>
             <Switch checked={notifications} onCheckedChange={setNotifications} />
@@ -157,9 +157,9 @@ export const SettingsPage = () => {
 
           <div className="flex items-center justify-between">
             <div>
-              <Label>Efek Suara</Label>
+              <Label>Sound Effects</Label>
               <p className="text-sm text-muted-foreground">
-                Mainkan suara saat level up dan achievement
+                Play sounds for level up and achievements
               </p>
             </div>
             <Switch checked={soundEffects} onCheckedChange={setSoundEffects} />
@@ -171,9 +171,9 @@ export const SettingsPage = () => {
       <div className="glass-card p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-red-400">Keluar dari Akun</h3>
+            <h3 className="font-semibold text-red-400">Sign Out</h3>
             <p className="text-sm text-muted-foreground">
-              Kamu akan perlu login kembali untuk mengakses akun
+              You will need to log in again to access your account
             </p>
           </div>
           <Button variant="destructive" onClick={handleLogout}>

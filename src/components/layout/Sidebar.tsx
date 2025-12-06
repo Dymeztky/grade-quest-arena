@@ -49,12 +49,12 @@ interface SidebarProps {
 export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
   const mainNavItems = [
     { id: "dashboard", icon: LayoutDashboard, label: "Dashboard" },
-    { id: "grades", icon: BarChart3, label: "Nilai" },
+    { id: "grades", icon: BarChart3, label: "Grades" },
     { id: "shop", icon: ShoppingBag, label: "Shop", badge: "3" },
     { id: "goals", icon: Target, label: "Goal Setting" },
-    { id: "calendar", icon: Calendar, label: "Kalender" },
-    { id: "friends", icon: Users, label: "Teman" },
-    { id: "notes", icon: FileText, label: "Catatan" },
+    { id: "calendar", icon: Calendar, label: "Calendar" },
+    { id: "friends", icon: Users, label: "Friends" },
+    { id: "notes", icon: FileText, label: "Notes" },
   ];
 
   const gameNavItems = [
@@ -78,7 +78,7 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         <div className="mb-4">
           <p className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-            Menu Utama
+            Main Menu
           </p>
           {mainNavItems.map((item) => (
             <NavItem
@@ -110,8 +110,8 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
 
       {/* Bottom Actions */}
       <div className="p-4 border-t border-sidebar-border space-y-1">
-        <NavItem icon={Settings} label="Pengaturan" active={activeItem === "settings"} onClick={() => onNavigate("settings")} />
-        <NavItem icon={LogOut} label="Keluar" />
+        <NavItem icon={Settings} label="Settings" active={activeItem === "settings"} onClick={() => onNavigate("settings")} />
+        <NavItem icon={LogOut} label="Logout" />
       </div>
     </aside>
   );

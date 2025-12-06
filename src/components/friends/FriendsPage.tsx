@@ -124,13 +124,13 @@ export const FriendsPage = () => {
     if (error) {
       toast({
         title: "Error",
-        description: "Gagal mengirim permintaan pertemanan",
+        description: "Failed to send friend request",
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Terkirim!",
-        description: "Permintaan pertemanan sudah dikirim",
+        title: "Sent!",
+        description: "Friend request has been sent",
       });
       setSearchResults((prev) => prev.filter((p) => p.user_id !== friendId));
     }
@@ -153,8 +153,8 @@ export const FriendsPage = () => {
     });
 
     toast({
-      title: "Berhasil!",
-      description: "Permintaan pertemanan diterima",
+      title: "Success!",
+      description: "Friend request accepted",
     });
 
     fetchFriends();
@@ -165,8 +165,8 @@ export const FriendsPage = () => {
     await supabase.from("friendships").delete().eq("id", requestId);
 
     toast({
-      title: "Ditolak",
-      description: "Permintaan pertemanan ditolak",
+      title: "Declined",
+      description: "Friend request declined",
     });
 
     fetchRequests();
@@ -184,8 +184,8 @@ export const FriendsPage = () => {
       .eq("friend_id", user.id);
 
     toast({
-      title: "Dihapus",
-      description: "Teman sudah dihapus dari daftar",
+      title: "Removed",
+      description: "Friend removed from list",
     });
 
     fetchFriends();
@@ -206,10 +206,10 @@ export const FriendsPage = () => {
         <div>
           <h1 className="font-display text-3xl font-bold flex items-center gap-3">
             <Users className="w-8 h-8 text-primary" />
-            Teman
+            Friends
           </h1>
           <p className="text-muted-foreground mt-1">
-            Kelola pertemanan dan tantang teman ke Grim Reaper
+            Manage friendships and challenge friends to Grim Reaper
           </p>
         </div>
       </div>
@@ -221,7 +221,7 @@ export const FriendsPage = () => {
           onClick={() => setActiveTab("friends")}
         >
           <Users className="w-4 h-4 mr-2" />
-          Teman ({friends.length})
+          Friends ({friends.length})
         </Button>
         <Button
           variant={activeTab === "requests" ? "default" : "outline"}
@@ -229,7 +229,7 @@ export const FriendsPage = () => {
           className="relative"
         >
           <UserPlus className="w-4 h-4 mr-2" />
-          Permintaan
+          Requests
           {requests.length > 0 && (
             <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-xs flex items-center justify-center">
               {requests.length}
@@ -241,7 +241,7 @@ export const FriendsPage = () => {
           onClick={() => setActiveTab("search")}
         >
           <Search className="w-4 h-4 mr-2" />
-          Cari
+          Search
         </Button>
       </div>
 
@@ -286,13 +286,13 @@ export const FriendsPage = () => {
           ) : (
             <div className="col-span-full glass-card p-12 text-center">
               <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-              <p className="text-muted-foreground">Belum ada teman</p>
+              <p className="text-muted-foreground">No friends yet</p>
               <Button
                 variant="outline"
                 className="mt-4"
                 onClick={() => setActiveTab("search")}
               >
-                Cari Teman
+                Find Friends
               </Button>
             </div>
           )}
@@ -341,7 +341,7 @@ export const FriendsPage = () => {
           ) : (
             <div className="glass-card p-12 text-center">
               <UserPlus className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-              <p className="text-muted-foreground">Tidak ada permintaan pertemanan</p>
+              <p className="text-muted-foreground">No friend requests</p>
             </div>
           )}
         </div>
@@ -352,7 +352,7 @@ export const FriendsPage = () => {
         <div className="space-y-4">
           <div className="flex gap-2">
             <Input
-              placeholder="Cari berdasarkan username atau nama..."
+              placeholder="Search by username or name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -360,7 +360,7 @@ export const FriendsPage = () => {
             />
             <Button onClick={handleSearch}>
               <Search className="w-4 h-4 mr-2" />
-              Cari
+              Search
             </Button>
           </div>
 
@@ -387,7 +387,7 @@ export const FriendsPage = () => {
                       onClick={() => sendFriendRequest(result.user_id)}
                     >
                       <UserPlus className="w-4 h-4 mr-1" />
-                      Tambah
+                      Add
                     </Button>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ export const FriendsPage = () => {
           ) : searchQuery && (
             <div className="glass-card p-12 text-center">
               <Search className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-              <p className="text-muted-foreground">Tidak ditemukan hasil untuk "{searchQuery}"</p>
+              <p className="text-muted-foreground">No results found for "{searchQuery}"</p>
             </div>
           )}
         </div>

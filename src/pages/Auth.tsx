@@ -33,9 +33,9 @@ const Auth = () => {
         const { error } = await signInWithEmail(email, password);
         if (error) {
           toast({
-            title: "Login Gagal",
+            title: "Login Failed",
             description: error.message === "Invalid login credentials" 
-              ? "Email atau password salah" 
+              ? "Invalid email or password" 
               : error.message,
             variant: "destructive",
           });
@@ -44,7 +44,7 @@ const Auth = () => {
         if (!displayName.trim()) {
           toast({
             title: "Error",
-            description: "Nama tampilan harus diisi",
+            description: "Display name is required",
             variant: "destructive",
           });
           setIsLoading(false);
@@ -53,23 +53,23 @@ const Auth = () => {
         const { error } = await signUpWithEmail(email, password, displayName);
         if (error) {
           toast({
-            title: "Registrasi Gagal",
+            title: "Registration Failed",
             description: error.message.includes("already registered")
-              ? "Email sudah terdaftar"
+              ? "Email already registered"
               : error.message,
             variant: "destructive",
           });
         } else {
           toast({
-            title: "Berhasil!",
-            description: "Akun berhasil dibuat. Selamat datang!",
+            title: "Success!",
+            description: "Account created successfully. Welcome!",
           });
         }
       }
     } catch (err) {
       toast({
         title: "Error",
-        description: "Terjadi kesalahan. Coba lagi nanti.",
+        description: "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     }
@@ -83,7 +83,7 @@ const Auth = () => {
     } catch (err) {
       toast({
         title: "Error",
-        description: "Gagal login dengan Google",
+        description: "Failed to sign in with Google",
         variant: "destructive",
       });
     }
@@ -106,7 +106,7 @@ const Auth = () => {
             ACADEMIX
           </h1>
           <p className="text-muted-foreground mt-2">
-            {isLogin ? "Masuk ke akun kamu" : "Daftar akun baru"}
+            {isLogin ? "Sign in to your account" : "Create a new account"}
           </p>
         </div>
 
@@ -117,7 +117,7 @@ const Auth = () => {
           onClick={handleGoogleLogin}
         >
           <Chrome className="w-5 h-5" />
-          Lanjutkan dengan Google
+          Continue with Google
         </Button>
 
         <div className="relative mb-6">
@@ -125,7 +125,7 @@ const Auth = () => {
             <div className="w-full border-t border-border/50" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-2 text-muted-foreground">atau</span>
+            <span className="bg-card px-2 text-muted-foreground">or</span>
           </div>
         </div>
 
@@ -133,13 +133,13 @@ const Auth = () => {
         <form onSubmit={handleEmailAuth} className="space-y-4">
           {!isLogin && (
             <div className="space-y-2">
-              <Label htmlFor="displayName">Nama Tampilan</Label>
+              <Label htmlFor="displayName">Display Name</Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   id="displayName"
                   type="text"
-                  placeholder="Nama kamu"
+                  placeholder="Your name"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
                   className="pl-10"
@@ -187,19 +187,19 @@ const Auth = () => {
             variant="gold"
             disabled={isLoading}
           >
-            {isLoading ? "Loading..." : isLogin ? "Masuk" : "Daftar"}
+            {isLoading ? "Loading..." : isLogin ? "Sign In" : "Sign Up"}
           </Button>
         </form>
 
         {/* Toggle */}
         <p className="text-center mt-6 text-sm text-muted-foreground">
-          {isLogin ? "Belum punya akun?" : "Sudah punya akun?"}{" "}
+          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
             type="button"
             onClick={() => setIsLogin(!isLogin)}
             className="text-primary hover:underline font-medium"
           >
-            {isLogin ? "Daftar sekarang" : "Masuk"}
+            {isLogin ? "Sign up now" : "Sign in"}
           </button>
         </p>
       </div>

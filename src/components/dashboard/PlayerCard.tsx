@@ -38,7 +38,7 @@ export const PlayerCard = ({ name, level, xp, xpMax, rank, streak }: PlayerCardP
         {/* Info */}
         <div className="flex-1 flex flex-col justify-center">
           <h2 className="font-display text-2xl font-bold mb-1">{name}</h2>
-          <p className="text-muted-foreground text-sm mb-4">Kelas XII IPA 2</p>
+          <p className="text-muted-foreground text-sm mb-4">Grade 12 Science</p>
           
           {/* XP Bar */}
           <div className="mb-4">
@@ -73,7 +73,7 @@ export const PlayerCard = ({ name, level, xp, xpMax, rank, streak }: PlayerCardP
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Streak</p>
-                <p className="font-display font-bold text-destructive">{streak} Hari</p>
+                <p className="font-display font-bold text-destructive">{streak} Days</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
