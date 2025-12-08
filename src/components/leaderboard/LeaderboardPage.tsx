@@ -13,24 +13,24 @@ interface LeaderboardEntry {
 }
 
 const leaderboardData: LeaderboardEntry[] = [
-  { rank: 1, name: "Sarah Wijaya", avgGrade: 95, totalSubjects: 8, change: "same" },
-  { rank: 2, name: "Budi Santoso", avgGrade: 92, totalSubjects: 8, change: "up" },
-  { rank: 3, name: "Maya Putri", avgGrade: 90, totalSubjects: 8, change: "down" },
-  { rank: 4, name: "Rizki Rahman", avgGrade: 88, totalSubjects: 8, change: "up" },
-  { rank: 5, name: "Diana Chen", avgGrade: 87, totalSubjects: 8, change: "same" },
-  { rank: 6, name: "Ahmad Fauzi", avgGrade: 85, totalSubjects: 8, change: "up" },
-  { rank: 7, name: "Lisa Anggraini", avgGrade: 84, totalSubjects: 8, change: "down" },
-  { rank: 8, name: "Kevin Pratama", avgGrade: 82, totalSubjects: 8, change: "same" },
-  { rank: 9, name: "Nina Sari", avgGrade: 81, totalSubjects: 8, change: "up" },
-  { rank: 10, name: "Dimas Nugroho", avgGrade: 80, totalSubjects: 8, change: "down" },
-  { rank: 11, name: "Rina Maharani", avgGrade: 79, totalSubjects: 8, change: "same" },
-  { rank: 12, name: "Alex Pratama", avgGrade: 78, totalSubjects: 8, change: "up", isCurrentUser: true },
+  { rank: 1, name: "Sarah Williams", avgGrade: 95, totalSubjects: 8, change: "same" },
+  { rank: 2, name: "James Chen", avgGrade: 92, totalSubjects: 8, change: "up" },
+  { rank: 3, name: "Maya Johnson", avgGrade: 90, totalSubjects: 8, change: "down" },
+  { rank: 4, name: "Ryan Smith", avgGrade: 88, totalSubjects: 8, change: "up" },
+  { rank: 5, name: "Diana Lee", avgGrade: 87, totalSubjects: 8, change: "same" },
+  { rank: 6, name: "Ahmad Khan", avgGrade: 85, totalSubjects: 8, change: "up" },
+  { rank: 7, name: "Lisa Wang", avgGrade: 84, totalSubjects: 8, change: "down" },
+  { rank: 8, name: "Kevin Brown", avgGrade: 82, totalSubjects: 8, change: "same" },
+  { rank: 9, name: "Nina Davis", avgGrade: 81, totalSubjects: 8, change: "up" },
+  { rank: 10, name: "Daniel Kim", avgGrade: 80, totalSubjects: 8, change: "down" },
+  { rank: 11, name: "Rina Garcia", avgGrade: 79, totalSubjects: 8, change: "same" },
+  { rank: 12, name: "Alex Parker", avgGrade: 78, totalSubjects: 8, change: "up", isCurrentUser: true },
 ];
 
-const grades = ["Grade 12 Science", "Grade 12 Social", "Grade 11 Science", "Grade 11 Social", "Grade 10 Science", "Grade 10 Social"];
+const grades = ["Grade 10", "Grade 11", "Grade 12"];
 
 export const LeaderboardPage = () => {
-  const [selectedGrade, setSelectedGrade] = useState("Grade 12 Science");
+  const [selectedGrade, setSelectedGrade] = useState("Grade 12");
 
   const getRankIcon = (rank: number) => {
     if (rank === 1) return <Crown className="w-6 h-6 text-gold" />;
@@ -53,7 +53,7 @@ export const LeaderboardPage = () => {
           <Trophy className="w-8 h-8 text-gold" />
           <h2 className="font-display text-3xl font-bold">Leaderboard</h2>
         </div>
-        <p className="text-muted-foreground">Ranking by average grade per class</p>
+        <p className="text-muted-foreground">Ranking by average grade per year level</p>
       </div>
 
       {/* Grade Filter */}
@@ -63,6 +63,7 @@ export const LeaderboardPage = () => {
             key={grade}
             variant={selectedGrade === grade ? "default" : "glass"}
             onClick={() => setSelectedGrade(grade)}
+            className="min-w-[120px]"
           >
             {grade}
           </Button>
@@ -75,7 +76,7 @@ export const LeaderboardPage = () => {
           {/* 2nd Place */}
           <div className="text-center">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-muted to-muted-foreground/20 mx-auto mb-2 flex items-center justify-center border-4 border-muted-foreground/30">
-              <span className="font-display text-2xl font-bold">B</span>
+              <span className="font-display text-2xl font-bold">J</span>
             </div>
             <div className="bg-muted-foreground/20 rounded-t-lg pt-8 pb-4 px-4 w-24">
               <Medal className="w-6 h-6 text-muted-foreground mx-auto mb-1" />

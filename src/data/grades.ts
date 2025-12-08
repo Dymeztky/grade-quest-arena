@@ -1,5 +1,4 @@
 // Grade data for the dashboard charts
-// This file can be updated to fetch from an API or database
 
 export interface SubjectGrade {
   subject: string;
@@ -16,24 +15,24 @@ export interface MonthlyGrade {
 }
 
 export const subjectGrades: SubjectGrade[] = [
-  { subject: "Matematika", shortName: "MTK", value: 85, fullMark: 100, trend: "+3" },
-  { subject: "Fisika", shortName: "FIS", value: 78, fullMark: 100, trend: "-2" },
-  { subject: "Kimia", shortName: "KIM", value: 92, fullMark: 100, trend: "+5" },
-  { subject: "Biologi", shortName: "BIO", value: 88, fullMark: 100, trend: "+1" },
-  { subject: "B. Inggris", shortName: "ING", value: 75, fullMark: 100, trend: "+4" },
-  { subject: "B. Indonesia", shortName: "IND", value: 82, fullMark: 100, trend: "0" },
+  { subject: "Mathematics", shortName: "MATH", value: 85, fullMark: 100, trend: "+3" },
+  { subject: "Physics", shortName: "PHY", value: 78, fullMark: 100, trend: "-2" },
+  { subject: "Chemistry", shortName: "CHEM", value: 92, fullMark: 100, trend: "+5" },
+  { subject: "Biology", shortName: "BIO", value: 88, fullMark: 100, trend: "+1" },
+  { subject: "English", shortName: "ENG", value: 75, fullMark: 100, trend: "+4" },
+  { subject: "Indonesian", shortName: "IND", value: 82, fullMark: 100, trend: "0" },
 ];
 
 export const monthlyGradesBySubject: Record<string, number[]> = {
-  "Matematika": [78, 82, 85, 80, 88, 85, 90],
-  "Fisika": [75, 78, 72, 80, 76, 82, 78],
-  "Kimia": [85, 88, 90, 92, 89, 94, 92],
-  "Biologi": [82, 85, 88, 86, 90, 87, 88],
-  "B. Inggris": [70, 72, 75, 78, 73, 76, 75],
-  "B. Indonesia": [80, 82, 78, 85, 83, 80, 82],
+  "Mathematics": [78, 82, 85, 80, 88, 85, 90],
+  "Physics": [75, 78, 72, 80, 76, 82, 78],
+  "Chemistry": [85, 88, 90, 92, 89, 94, 92],
+  "Biology": [82, 85, 88, 86, 90, 87, 88],
+  "English": [70, 72, 75, 78, 73, 76, 75],
+  "Indonesian": [80, 82, 78, 85, 83, 80, 82],
 };
 
-export const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul"];
+export const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"];
 
 export const defaultTarget = 80;
 
