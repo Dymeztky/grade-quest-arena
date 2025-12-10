@@ -2,6 +2,7 @@ import { LayoutDashboard, BarChart3, ShoppingBag, Target, Calendar, Users, FileT
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface NavItemProps {
   icon: React.ElementType;
@@ -26,6 +27,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
   const { theme, setTheme } = useTheme();
+  const { signOut } = useAuth();
 
   const mainNavItems = [
     { id: "dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -44,6 +46,14 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
     { id: "avatar", icon: User, label: "Avatar" },
     { id: "leaderboard", icon: Trophy, label: "Leaderboard" },
   ];
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleLogout = async () => {
+    await signOut();
+  };
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col z-50">
@@ -69,12 +79,16 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border space-y-1">
-        <Button variant="ghost" className="w-full justify-start gap-3" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+        <Button 
+          variant="ghost" 
+          className="w-full justify-start gap-3 hover:bg-secondary" 
+          onClick={toggleTheme}
+        >
           {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
         </Button>
         <NavItem icon={Settings} label="Settings" active={activeItem === "settings"} onClick={() => onNavigate("settings")} />
-        <NavItem icon={LogOut} label="Logout" />
+        <NavItem icon={LogOut} label="Logout" onClick={handleLogout} />
       </div>
     </aside>
   );
