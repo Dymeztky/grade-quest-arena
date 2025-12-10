@@ -1,4 +1,4 @@
-import { Bell, Search, Coins, Zap } from "lucide-react";
+import { Bell, Search, Coins, Zap, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
@@ -7,9 +7,10 @@ interface HeaderProps {
   xp: number;
   xpMax: number;
   coins: number;
+  onProfileClick?: () => void;
 }
 
-export const Header = ({ playerName, level, xp, xpMax, coins }: HeaderProps) => {
+export const Header = ({ playerName, level, xp, xpMax, coins, onProfileClick }: HeaderProps) => {
   const xpPercentage = (xp / xpMax) * 100;
 
   return (
@@ -23,14 +24,24 @@ export const Header = ({ playerName, level, xp, xpMax, coins }: HeaderProps) => 
       <div className="flex items-center gap-6">
         <div className="coin-display"><Coins className="w-5 h-5 text-gold" /><span className="font-display font-bold text-gold">{coins.toLocaleString()}</span></div>
         <div className="flex items-center gap-3">
-          <div className="level-badge"><span>{level}</span></div>
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary" /><span className="text-sm font-medium">{xp} / {xpMax} XP</span></div>
             <div className="xp-bar w-32"><div className="xp-bar-fill" style={{ width: `${xpPercentage}%` }} /></div>
           </div>
         </div>
         <Button variant="ghost" size="icon" className="relative"><Bell className="w-5 h-5" /><span className="absolute -top-1 -right-1 w-4 h-4 bg-destructive rounded-full text-[10px] font-bold flex items-center justify-center">3</span></Button>
-        <div className="flex items-center gap-3"><div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center border-2 border-primary/30"><span className="font-display font-bold text-sm">{playerName.charAt(0)}</span></div></div>
+        <button 
+          onClick={onProfileClick}
+          className="flex items-center gap-3 hover:bg-secondary/50 rounded-lg px-2 py-1 transition-colors"
+        >
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center border-2 border-primary/30">
+            <span className="font-display font-bold text-sm">{playerName.charAt(0)}</span>
+          </div>
+          <div className="text-left hidden md:block">
+            <p className="font-medium text-sm">{playerName}</p>
+          </div>
+          <div className="level-badge !w-8 !h-8 text-xs">{level}</div>
+        </button>
       </div>
     </header>
   );

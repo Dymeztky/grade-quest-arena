@@ -29,7 +29,11 @@ const leaderboardData: LeaderboardEntry[] = [
 
 const grades = ["Grade 10", "Grade 11", "Grade 12"];
 
-export const LeaderboardPage = () => {
+interface LeaderboardPageProps {
+  onViewProfile?: (userId: string) => void;
+}
+
+export const LeaderboardPage = ({ onViewProfile }: LeaderboardPageProps) => {
   const [selectedGrade, setSelectedGrade] = useState("Grade 12");
 
   const getRankIcon = (rank: number) => {
