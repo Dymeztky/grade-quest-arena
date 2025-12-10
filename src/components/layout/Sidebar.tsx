@@ -1,8 +1,7 @@
-import { LayoutDashboard, BarChart3, ShoppingBag, Target, Calendar, Users, FileText, Repeat, Skull, User, Trophy, Settings, LogOut, BookOpen, Sun, Moon } from "lucide-react";
+import { LayoutDashboard, BarChart3, ShoppingBag, Target, CalendarDays, Users, FileText, Repeat, Skull, User, Trophy, Settings, LogOut, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface NavItemProps {
   icon: React.ElementType;
@@ -26,7 +25,6 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
-  const { theme, setTheme } = useTheme();
   const { signOut } = useAuth();
 
   const mainNavItems = [
@@ -34,7 +32,7 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
     { id: "grades", icon: BarChart3, label: "Grades" },
     { id: "shop", icon: ShoppingBag, label: "Shop", badge: "3" },
     { id: "goals", icon: Target, label: "Goal Setting" },
-    { id: "calendar", icon: Calendar, label: "Calendar" },
+    { id: "schedule", icon: CalendarDays, label: "My Schedule" },
     { id: "friends", icon: Users, label: "Friends" },
     { id: "notes", icon: FileText, label: "Notes" },
     { id: "guide", icon: BookOpen, label: "Guide" },
@@ -46,10 +44,6 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
     { id: "avatar", icon: User, label: "Avatar" },
     { id: "leaderboard", icon: Trophy, label: "Leaderboard" },
   ];
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   const handleLogout = async () => {
     await signOut();
@@ -79,14 +73,7 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border space-y-1">
-        <Button 
-          variant="ghost" 
-          className="w-full justify-start gap-3 hover:bg-secondary" 
-          onClick={toggleTheme}
-        >
-          {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
-        </Button>
+        <ThemeToggle />
         <NavItem icon={Settings} label="Settings" active={activeItem === "settings"} onClick={() => onNavigate("settings")} />
         <NavItem icon={LogOut} label="Logout" onClick={handleLogout} />
       </div>

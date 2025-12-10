@@ -29,7 +29,11 @@ interface FriendRequest {
   };
 }
 
-export const FriendsPage = () => {
+interface FriendsPageProps {
+  onViewProfile?: (userId: string) => void;
+}
+
+export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
   const { user } = useAuth();
   const { toast } = useToast();
   const [friends, setFriends] = useState<Friend[]>([]);
