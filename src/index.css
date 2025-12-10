@@ -6,53 +6,53 @@
 
 @layer base {
   :root {
-    /* Light theme */
-    --background: 0 0% 98%;
-    --foreground: 222 47% 11%;
+    /* Light theme - Clean & Modern */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 222 47% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 174 72% 40%;
+    --popover-foreground: 222 47% 15%;
+    --primary: 174 72% 42%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
-    --accent: 45 93% 58%;
-    --accent-foreground: 222 47% 11%;
+    --secondary: 210 30% 95%;
+    --secondary-foreground: 222 47% 15%;
+    --muted: 210 30% 94%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 45 93% 52%;
+    --accent-foreground: 222 47% 15%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 174 72% 40%;
+    --border: 214 20% 88%;
+    --input: 214 20% 90%;
+    --ring: 174 72% 42%;
     --radius: 0.75rem;
-    --xp-bar: 174 72% 40%;
-    --xp-bar-glow: 174 72% 50%;
-    --coin-gold: 45 93% 47%;
-    --coin-glow: 45 93% 58%;
+    --xp-bar: 174 72% 42%;
+    --xp-bar-glow: 174 72% 52%;
+    --coin-gold: 45 93% 50%;
+    --coin-glow: 45 93% 60%;
     --health-red: 0 72% 51%;
     --level-purple: 270 70% 55%;
-    --success-green: 142 70% 40%;
-    --gradient-primary: linear-gradient(135deg, hsl(174 72% 40%), hsl(190 80% 35%));
-    --gradient-gold: linear-gradient(135deg, hsl(45 93% 47%), hsl(35 90% 40%));
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 98%), hsl(220 14% 96%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 14% 98%));
-    --gradient-grim: linear-gradient(135deg, hsl(0 72% 45%), hsl(330 70% 40%));
-    --glass-bg: hsl(0 0% 100% / 0.8);
-    --glass-border: hsl(220 13% 85% / 0.5);
-    --shadow-glow-primary: 0 0 30px hsl(174 72% 40% / 0.2);
-    --shadow-glow-gold: 0 0 30px hsl(45 93% 47% / 0.2);
-    --shadow-glow-red: 0 0 30px hsl(0 72% 51% / 0.2);
-    --shadow-card: 0 4px 20px hsl(220 13% 50% / 0.1);
+    --success-green: 142 70% 42%;
+    --gradient-primary: linear-gradient(135deg, hsl(174 72% 42%), hsl(190 80% 40%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 50%), hsl(35 90% 45%));
+    --gradient-dark: linear-gradient(180deg, hsl(210 40% 98%), hsl(210 30% 95%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 30% 98%));
+    --gradient-grim: linear-gradient(135deg, hsl(0 72% 50%), hsl(330 70% 45%));
+    --glass-bg: hsl(0 0% 100% / 0.9);
+    --glass-border: hsl(214 20% 85% / 0.6);
+    --shadow-glow-primary: 0 0 20px hsl(174 72% 42% / 0.15);
+    --shadow-glow-gold: 0 0 20px hsl(45 93% 50% / 0.15);
+    --shadow-glow-red: 0 0 20px hsl(0 72% 51% / 0.15);
+    --shadow-card: 0 2px 12px hsl(214 20% 50% / 0.08);
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 174 72% 40%;
+    --sidebar-foreground: 222 47% 15%;
+    --sidebar-primary: 174 72% 42%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 174 72% 40%;
+    --sidebar-accent: 210 30% 95%;
+    --sidebar-accent-foreground: 222 47% 15%;
+    --sidebar-border: 214 20% 90%;
+    --sidebar-ring: 174 72% 42%;
   }
 
   .dark {
@@ -111,10 +111,20 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+  }
+  
+  .dark body {
     background-image: 
       radial-gradient(ellipse at top, hsl(222 47% 10%) 0%, transparent 50%),
       radial-gradient(ellipse at bottom right, hsl(174 72% 20% / 0.1) 0%, transparent 40%),
       radial-gradient(ellipse at bottom left, hsl(270 70% 20% / 0.1) 0%, transparent 40%);
+  }
+  
+  :root body {
+    background-image: 
+      radial-gradient(ellipse at top, hsl(210 40% 96%) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, hsl(174 72% 90% / 0.3) 0%, transparent 40%),
+      radial-gradient(ellipse at bottom left, hsl(270 70% 95% / 0.2) 0%, transparent 40%);
   }
 
   h1, h2, h3, h4, h5, h6 {

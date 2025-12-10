@@ -1,10 +1,10 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { User, Sparkles, ShoppingBag, Check, Lock, RotateCcw } from "lucide-react";
+import { User, Sparkles, ShoppingBag, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { Avatar3D } from "./Avatar3D";
+import { BlooketAvatar } from "./BlooketAvatar";
 
 interface Accessory {
   id: string;
@@ -20,26 +20,19 @@ interface OwnedAccessory extends Accessory {
   equipped: boolean;
 }
 
-const rarityColors: Record<string, string> = {
-  common: "border-gray-500 bg-gray-500/10",
-  rare: "border-blue-500 bg-blue-500/10",
-  epic: "border-purple-500 bg-purple-500/10",
-  legendary: "border-gold bg-gold/10",
-};
-
 const skinColors = [
-  { id: "default", name: "Light", color: "#e0a899" },
-  { id: "fair", name: "Fair", color: "#ffdbac" },
-  { id: "tan", name: "Tan", color: "#c68642" },
-  { id: "dark", name: "Dark", color: "#8d5524" },
+  { id: "default", name: "Light", color: "#FFD5C2" },
+  { id: "fair", name: "Fair", color: "#FFF0E6" },
+  { id: "tan", name: "Tan", color: "#D4A574" },
+  { id: "dark", name: "Dark", color: "#8B6F47" },
 ];
 
 const outfitColors = [
-  { id: "blue", name: "Blue", color: "#3b82f6" },
-  { id: "red", name: "Red", color: "#ef4444" },
-  { id: "green", name: "Green", color: "#22c55e" },
-  { id: "gold", name: "Gold", color: "#eab308" },
-  { id: "grey", name: "Grey", color: "#6b7280" },
+  { id: "blue", name: "Blue", color: "#4F9DDE" },
+  { id: "red", name: "Red", color: "#E85D75" },
+  { id: "green", name: "Green", color: "#5DC264" },
+  { id: "gold", name: "Gold", color: "#F5C842" },
+  { id: "grey", name: "Grey", color: "#7C8594" },
 ];
 
 const hatOptions = [
@@ -56,12 +49,12 @@ const glassesOptions = [
 ];
 
 export const AvatarPage = () => {
-  const { user, profile, refreshProfile } = useAuth();
+  const { user, profile } = useAuth();
   const { toast } = useToast();
   const [accessories, setAccessories] = useState<Accessory[]>([]);
   const [ownedAccessories, setOwnedAccessories] = useState<OwnedAccessory[]>([]);
   const [loading, setLoading] = useState(true);
-  
+
   const [skinColor, setSkinColor] = useState("default");
   const [outfit, setOutfit] = useState("blue");
   const [hat, setHat] = useState("none");
@@ -121,44 +114,39 @@ export const AvatarPage = () => {
             Avatar Customisation
           </h1>
           <p className="text-muted-foreground mt-1">
-            Customise your 3D avatar with cool accessories
+            Customise your avatar with cool accessories
           </p>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold/20 border border-gold/30">
-          <span className="text-gold">🪙</span>
-          <span className="font-bold text-gold">{profile?.coins || 0}</span>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30">
+          <span className="text-accent">🪙</span>
+          <span className="font-bold text-accent-foreground">{profile?.coins || 0}</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* 3D Avatar Preview */}
+        {/* Avatar Preview */}
         <div className="glass-card p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-display text-lg font-bold flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-gold" />
-              3D Preview
+              <Sparkles className="w-5 h-5 text-accent" />
+              Preview
             </h3>
             <Button variant="outline" size="sm" onClick={handleReset}>
               <RotateCcw className="w-4 h-4 mr-2" />
               Reset
             </Button>
           </div>
-          
-          <div className="aspect-square bg-gradient-to-br from-primary/10 to-gold/10 rounded-2xl overflow-hidden">
-            <Suspense fallback={
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-              </div>
-            }>
-              <Avatar3D 
-                skinColor={skinColor}
-                outfit={outfit}
-                hat={hat}
-                glasses={glasses}
-              />
-            </Suspense>
+
+          <div className="aspect-square bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl overflow-hidden flex items-center justify-center p-8">
+            <BlooketAvatar
+              skinColor={skinColor}
+              outfit={outfit}
+              hat={hat}
+              glasses={glasses}
+              className="w-full max-w-[280px]"
+            />
           </div>
-          
+
           <p className="text-sm text-muted-foreground text-center mt-4">
             Click and drag to rotate your avatar
           </p>
@@ -174,9 +162,10 @@ export const AvatarPage = () => {
                 <button
                   key={skin.id}
                   onClick={() => setSkinColor(skin.id)}
-                  className={`w-12 h-12 rounded-full border-4 transition-all ${
-                    skinColor === skin.id ? "border-primary scale-110" : "border-transparent"
-                  }`}
+                  className={`w-12 h-12 rounded-full border-4 transition-all shadow-md hover:scale-105 ${skinColor === skin.id
+                    ? "border-primary scale-110 ring-2 ring-primary/30"
+                    : "border-border"
+                    }`}
                   style={{ backgroundColor: skin.color }}
                   title={skin.name}
                 />
@@ -192,9 +181,10 @@ export const AvatarPage = () => {
                 <button
                   key={o.id}
                   onClick={() => setOutfit(o.id)}
-                  className={`w-12 h-12 rounded-lg border-4 transition-all ${
-                    outfit === o.id ? "border-primary scale-110" : "border-transparent"
-                  }`}
+                  className={`w-12 h-12 rounded-lg border-4 transition-all shadow-md hover:scale-105 ${outfit === o.id
+                    ? "border-primary scale-110 ring-2 ring-primary/30"
+                    : "border-border"
+                    }`}
                   style={{ backgroundColor: o.color }}
                   title={o.name}
                 />
@@ -237,9 +227,9 @@ export const AvatarPage = () => {
           </div>
 
           {/* Unlock More */}
-          <div className="glass-card p-6 border-l-4 border-gold">
+          <div className="glass-card p-6 border-l-4 border-accent">
             <div className="flex items-center gap-3">
-              <ShoppingBag className="w-6 h-6 text-gold" />
+              <ShoppingBag className="w-6 h-6 text-accent" />
               <div>
                 <h3 className="font-semibold">Want more options?</h3>
                 <p className="text-sm text-muted-foreground">
