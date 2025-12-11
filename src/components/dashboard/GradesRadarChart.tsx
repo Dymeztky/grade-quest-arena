@@ -10,11 +10,11 @@ export const GradesRadarChart = () => {
     <div className="glass-card p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="font-display text-xl font-bold">Grafik Nilai</h3>
-          <p className="text-sm text-muted-foreground">Semua mata pelajaran</p>
+          <h3 className="font-display text-xl font-bold">Grade Chart</h3>
+          <p className="text-sm text-muted-foreground">All subjects</p>
         </div>
         <div className="text-right">
-          <p className="text-sm text-muted-foreground">Rata-rata</p>
+          <p className="text-sm text-muted-foreground">Average</p>
           <p className="font-display text-3xl font-bold text-primary glow-text-primary">{totalAverage}</p>
         </div>
       </div>
@@ -36,7 +36,7 @@ export const GradesRadarChart = () => {
                 axisLine={false}
               />
               <Radar
-                name="Nilai"
+                name="Grade"
                 dataKey="value"
                 stroke="hsl(var(--primary))"
                 fill="hsl(var(--primary))"

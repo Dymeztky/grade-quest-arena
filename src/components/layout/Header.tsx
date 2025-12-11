@@ -1,5 +1,7 @@
-import { Bell, Search, Coins, Zap, User } from "lucide-react";
+import { useState } from "react";
+import { Bell, Search, Coins, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NotificationsPanel } from "@/components/notifications/NotificationsPanel";
 
 interface HeaderProps {
   playerName: string;
@@ -11,6 +13,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ playerName, level, xp, xpMax, coins, onProfileClick }: HeaderProps) => {
+  const [showNotifications, setShowNotifications] = useState(false);
   const xpPercentage = (xp / xpMax) * 100;
 
   return (
@@ -29,7 +32,15 @@ export const Header = ({ playerName, level, xp, xpMax, coins, onProfileClick }: 
             <div className="xp-bar w-32"><div className="xp-bar-fill" style={{ width: `${xpPercentage}%` }} /></div>
           </div>
         </div>
-        <Button variant="ghost" size="icon" className="relative"><Bell className="w-5 h-5" /><span className="absolute -top-1 -right-1 w-4 h-4 bg-destructive rounded-full text-[10px] font-bold flex items-center justify-center">3</span></Button>
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="relative"
+          onClick={() => setShowNotifications(!showNotifications)}
+        >
+          <Bell className="w-5 h-5" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-destructive rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
+        </Button>
         <button 
           onClick={onProfileClick}
           className="flex items-center gap-3 hover:bg-secondary/50 rounded-lg px-2 py-1 transition-colors"
@@ -43,6 +54,7 @@ export const Header = ({ playerName, level, xp, xpMax, coins, onProfileClick }: 
           <div className="level-badge !w-8 !h-8 text-xs">{level}</div>
         </button>
       </div>
+      <NotificationsPanel isOpen={showNotifications} onClose={() => setShowNotifications(false)} />
     </header>
   );
 };
