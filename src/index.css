@@ -116,9 +116,10 @@
   
   .dark body {
     background: hsl(222 30% 8%);
+    background-image: none;
   }
   
-  :root body {
+  :root:not(.dark) body {
     background-image: 
       radial-gradient(ellipse at top, hsl(210 40% 96%) 0%, transparent 50%),
       radial-gradient(ellipse at bottom right, hsl(174 72% 90% / 0.3) 0%, transparent 40%),
