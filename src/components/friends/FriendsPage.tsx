@@ -6,6 +6,7 @@ import { Users, UserPlus, Search, Check, X, MessageCircle, Trophy } from "lucide
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ChatWindow } from "@/components/chat/ChatWindow";
 
 interface Friend {
   id: string;
@@ -33,6 +34,12 @@ interface FriendsPageProps {
   onViewProfile?: (userId: string) => void;
 }
 
+interface ChatFriend {
+  id: string;
+  name: string;
+  level: number;
+}
+
 export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -42,6 +49,7 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<"friends" | "requests" | "search">("friends");
   const [loading, setLoading] = useState(true);
+  const [activeChatFriend, setActiveChatFriend] = useState<ChatFriend | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -109,7 +117,6 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
       .limit(10);
 
     if (!error && data) {
-      // Filter out existing friends
       const friendIds = friends.map((f) => f.profile.user_id);
       const filtered = data.filter((p) => !friendIds.includes(p.user_id));
       setSearchResults(filtered);
@@ -143,13 +150,11 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
   const acceptRequest = async (requestId: string, senderId: string) => {
     if (!user) return;
 
-    // Update the request status
     await supabase
       .from("friendships")
       .update({ status: "accepted" })
       .eq("id", requestId);
 
-    // Create reverse friendship
     await supabase.from("friendships").insert({
       user_id: user.id,
       friend_id: senderId,
@@ -176,23 +181,12 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
     fetchRequests();
   };
 
-  const removeFriend = async (friendshipId: string, friendUserId: string) => {
-    if (!user) return;
-
-    // Remove both directions
-    await supabase.from("friendships").delete().eq("id", friendshipId);
-    await supabase
-      .from("friendships")
-      .delete()
-      .eq("user_id", friendUserId)
-      .eq("friend_id", user.id);
-
-    toast({
-      title: "Removed",
-      description: "Friend removed from list",
+  const openChat = (friend: Friend) => {
+    setActiveChatFriend({
+      id: friend.profile.user_id,
+      name: friend.profile.display_name || friend.profile.username || "Friend",
+      level: friend.profile.level || 1,
     });
-
-    fetchFriends();
   };
 
   if (loading) {
@@ -235,7 +229,7 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
           <UserPlus className="w-4 h-4 mr-2" />
           Requests
           {requests.length > 0 && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-xs flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-destructive text-destructive-foreground text-xs flex items-center justify-center">
               {requests.length}
             </span>
           )}
@@ -273,7 +267,12 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
                   </div>
                 </div>
                 <div className="flex gap-2 mt-4">
-                  <Button size="sm" variant="outline" className="flex-1">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="flex-1"
+                    onClick={() => openChat(friend)}
+                  >
                     <MessageCircle className="w-4 h-4 mr-1" />
                     Chat
                   </Button>
@@ -404,6 +403,14 @@ export const FriendsPage = ({ onViewProfile }: FriendsPageProps) => {
             </div>
           )}
         </div>
+      )}
+
+      {/* Chat Window */}
+      {activeChatFriend && (
+        <ChatWindow
+          friend={activeChatFriend}
+          onClose={() => setActiveChatFriend(null)}
+        />
       )}
     </div>
   );
