@@ -129,8 +129,9 @@ export const ProfilePage = ({ userId, onBack }: ProfilePageProps) => {
                 Level {profile.level}
               </div>
             </div>
+            <p className="text-muted-foreground mt-1">Class 12A</p>
             {profile.username && (
-              <p className="text-muted-foreground mt-1">@{profile.username}</p>
+              <p className="text-muted-foreground">@{profile.username}</p>
             )}
             
             {/* XP Bar */}

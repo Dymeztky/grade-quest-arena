@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, ShoppingBag, Target, CalendarDays, Users, FileText, Repeat, Skull, User, Trophy, Settings, LogOut, BookOpen } from "lucide-react";
+import { LayoutDashboard, BarChart3, ShoppingBag, Target, CalendarDays, Users, FileText, Repeat, Skull, User, Trophy, Settings, LogOut, BookOpen, Gamepad2, Sword, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "./ThemeToggle";
@@ -32,13 +32,16 @@ export const Sidebar = ({ activeItem, onNavigate }: SidebarProps) => {
     { id: "grades", icon: BarChart3, label: "Grades" },
     { id: "shop", icon: ShoppingBag, label: "Shop", badge: "3" },
     { id: "goals", icon: Target, label: "Goal Setting" },
+    { id: "quests", icon: Sword, label: "Daily Quests", badge: "5" },
     { id: "schedule", icon: CalendarDays, label: "My Schedule" },
     { id: "friends", icon: Users, label: "Friends" },
+    { id: "chat", icon: MessageCircle, label: "Chat" },
     { id: "notes", icon: FileText, label: "Notes" },
     { id: "guide", icon: BookOpen, label: "Guide" },
   ];
 
   const gameNavItems = [
+    { id: "games", icon: Gamepad2, label: "Mini Games" },
     { id: "barter", icon: Repeat, label: "Barter" },
     { id: "grimreaper", icon: Skull, label: "Grim Reaper" },
     { id: "avatar", icon: User, label: "Avatar" },

@@ -12,8 +12,8 @@ export const SubjectLineChart = () => {
     <div className="glass-card p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="font-display text-xl font-bold">Progress Nilai</h3>
-          <p className="text-sm text-muted-foreground">Per mata pelajaran</p>
+          <h3 className="font-display text-xl font-bold">Grade Progress</h3>
+          <p className="text-sm text-muted-foreground">Per subject</p>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export const SubjectLineChart = () => {
               stroke="hsl(var(--primary))"
               strokeWidth={3}
               fill="url(#colorNilai)"
-              name="Nilai"
+              name="Grade"
               dot={{ fill: "hsl(var(--primary))", strokeWidth: 2, r: 4 }}
               activeDot={{ r: 6, fill: "hsl(var(--primary))", stroke: "hsl(var(--background))", strokeWidth: 2 }}
             />
@@ -88,7 +88,7 @@ export const SubjectLineChart = () => {
       <div className="flex justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-primary" />
-          <span className="text-sm text-muted-foreground">Nilai</span>
+          <span className="text-sm text-muted-foreground">Grade</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-6 h-0.5 bg-destructive" style={{ borderTop: "2px dashed" }} />

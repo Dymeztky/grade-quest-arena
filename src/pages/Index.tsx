@@ -15,6 +15,9 @@ import { GuidePage } from "@/components/guide/GuidePage";
 import { NotesPage } from "@/components/notes/NotesPage";
 import { ProfilePage } from "@/components/profile/ProfilePage";
 import { SchedulePage } from "@/components/schedule/SchedulePage";
+import { MiniGamesPage } from "@/components/games/MiniGamesPage";
+import { DailyQuestsPage } from "@/components/quests/DailyQuestsPage";
+import { GlobalChatPage } from "@/components/chat/GlobalChatPage";
 import { useAuth } from "@/contexts/AuthContext";
 
 const Index = () => {
@@ -61,6 +64,9 @@ const Index = () => {
       case "guide": return <GuidePage />;
       case "notes": return <NotesPage />;
       case "schedule": return <SchedulePage />;
+      case "games": return <MiniGamesPage />;
+      case "quests": return <DailyQuestsPage />;
+      case "chat": return <GlobalChatPage />;
       default: return (
         <div className="glass-card p-12 text-center animate-fade-in">
           <h2 className="font-display text-2xl font-bold mb-2">{activeItem.charAt(0).toUpperCase() + activeItem.slice(1)}</h2>
